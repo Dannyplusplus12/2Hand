@@ -65,7 +65,4 @@ public partial class DashboardView : UserControl, IThemeable
             mainForm.NavigateToCustomer(customerId);
         }
     }
-        }
-    }
-
 }
