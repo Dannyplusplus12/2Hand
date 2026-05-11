@@ -59,12 +59,12 @@ partial class InventoryView
         // layout.Panel1
         // 
         layout.Panel1.Controls.Add(leftPanel);
-        layout.Panel1MinSize = 700;
+        layout.Panel1MinSize = 800;
         // 
         // layout.Panel2
         // 
         layout.Panel2.Controls.Add(formPanel);
-        layout.Panel2MinSize = 320;
+        layout.Panel2MinSize = 380;
         layout.Size = new Size(1189, 692);
         layout.SplitterDistance = 805;
         layout.TabIndex = 0;
@@ -86,7 +86,7 @@ partial class InventoryView
         cardsPanel.Dock = DockStyle.Fill;
         cardsPanel.Location = new Point(0, 120);
         cardsPanel.Name = "cardsPanel";
-        cardsPanel.Padding = new Padding(8);
+        cardsPanel.Padding = new Padding(10);
         cardsPanel.Size = new Size(805, 572);
         cardsPanel.TabIndex = 0;
         // 
@@ -97,28 +97,28 @@ partial class InventoryView
         headerPanel.Dock = DockStyle.Top;
         headerPanel.Location = new Point(0, 0);
         headerPanel.Name = "headerPanel";
-        headerPanel.Padding = new Padding(8);
+        headerPanel.Padding = new Padding(10);
         headerPanel.Size = new Size(805, 120);
         headerPanel.TabIndex = 1;
         // 
         // searchBox
         // 
         searchBox.Dock = DockStyle.Fill;
-        searchBox.Font = new Font("Segoe UI", 14F);
+        searchBox.Font = new Font("Segoe UI", 18F);
         searchBox.Location = new Point(10, 10);
         searchBox.Name = "searchBox";
         searchBox.PlaceholderText = "Tìm kiếm sản phẩm";
-        searchBox.Size = new Size(605, 39);
+        searchBox.Size = new Size(605, 47);
         searchBox.TabIndex = 0;
         searchBox.TextChanged += SearchBox_TextChanged;
         // 
         // sampleButton
         // 
         sampleButton.Dock = DockStyle.Right;
-        sampleButton.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+        sampleButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
         sampleButton.Location = new Point(615, 10);
         sampleButton.Name = "sampleButton";
-        sampleButton.Size = new Size(160, 80);
+        sampleButton.Size = new Size(180, 100);
         sampleButton.TabIndex = 1;
         sampleButton.Text = "Sample";
         sampleButton.Click += SampleButton_Click;
@@ -134,17 +134,17 @@ partial class InventoryView
         formPanel.Dock = DockStyle.Fill;
         formPanel.Location = new Point(0, 0);
         formPanel.Name = "formPanel";
-        formPanel.Padding = new Padding(16);
+        formPanel.Padding = new Padding(20);
         formPanel.Size = new Size(380, 692);
         formPanel.TabIndex = 0;
         // 
         // addButton
         // 
         addButton.Dock = DockStyle.Top;
-        addButton.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+        addButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
         addButton.Location = new Point(20, 268);
         addButton.Name = "addButton";
-        addButton.Size = new Size(288, 52);
+        addButton.Size = new Size(340, 60);
         addButton.TabIndex = 0;
         addButton.Text = "Thêm";
         addButton.Click += AddButton_Click;
@@ -152,54 +152,54 @@ partial class InventoryView
         // imageInput
         // 
         imageInput.Dock = DockStyle.Top;
-        imageInput.Font = new Font("Segoe UI", 14F);
+        imageInput.Font = new Font("Segoe UI", 18F);
         imageInput.Location = new Point(20, 221);
         imageInput.Margin = new Padding(0, 0, 0, 10);
         imageInput.Name = "imageInput";
         imageInput.PlaceholderText = "Đường dẫn ảnh";
-        imageInput.Size = new Size(288, 39);
+        imageInput.Size = new Size(340, 47);
         imageInput.TabIndex = 1;
         // 
         // quantityInput
         // 
         quantityInput.Dock = DockStyle.Top;
-        quantityInput.Font = new Font("Segoe UI", 14F);
+        quantityInput.Font = new Font("Segoe UI", 18F);
         quantityInput.Location = new Point(20, 174);
         quantityInput.Margin = new Padding(0, 0, 0, 10);
         quantityInput.Name = "quantityInput";
         quantityInput.PlaceholderText = "Số lượng";
-        quantityInput.Size = new Size(288, 39);
+        quantityInput.Size = new Size(340, 47);
         quantityInput.TabIndex = 2;
         // 
         // priceInput
         // 
         priceInput.Dock = DockStyle.Top;
-        priceInput.Font = new Font("Segoe UI", 14F);
+        priceInput.Font = new Font("Segoe UI", 18F);
         priceInput.Location = new Point(20, 127);
         priceInput.Margin = new Padding(0, 0, 0, 10);
         priceInput.Name = "priceInput";
         priceInput.PlaceholderText = "Giá";
-        priceInput.Size = new Size(288, 39);
+        priceInput.Size = new Size(340, 47);
         priceInput.TabIndex = 3;
         // 
         // nameInput
         // 
         nameInput.Dock = DockStyle.Top;
-        nameInput.Font = new Font("Segoe UI", 14F);
+        nameInput.Font = new Font("Segoe UI", 18F);
         nameInput.Location = new Point(20, 80);
         nameInput.Margin = new Padding(0, 0, 0, 10);
         nameInput.Name = "nameInput";
         nameInput.PlaceholderText = "Tên sản phẩm";
-        nameInput.Size = new Size(288, 39);
+        nameInput.Size = new Size(340, 47);
         nameInput.TabIndex = 4;
         // 
         // formTitle
         // 
         formTitle.Dock = DockStyle.Top;
-        formTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+        formTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
         formTitle.Location = new Point(20, 20);
         formTitle.Name = "formTitle";
-        formTitle.Size = new Size(288, 52);
+        formTitle.Size = new Size(340, 60);
         formTitle.TabIndex = 5;
         formTitle.Text = "Thêm sản phẩm";
         // 

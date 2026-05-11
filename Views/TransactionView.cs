@@ -29,4 +29,14 @@ public partial class TransactionView : UserControl, IThemeable
         transferButton.BackColor = Color.FromArgb(39, 174, 96);
         transferButton.ForeColor = Color.White;
     }
+
+    private void cartGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+
+    }
+
+    private void transferButton_Click(object sender, EventArgs e)
+    {
+
+    }
 }

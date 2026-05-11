@@ -46,27 +46,27 @@ partial class TransactionView
         headerPanel.Location = new Point(0, 0);
         headerPanel.Name = "headerPanel";
         headerPanel.Padding = new Padding(10);
-        headerPanel.Size = new Size(911, 160);
+        headerPanel.Size = new Size(911, 200);
         headerPanel.TabIndex = 2;
         // 
         // nameInput
         // 
         nameInput.Dock = DockStyle.Top;
-        nameInput.Font = new Font("Segoe UI", 16F);
+        nameInput.Font = new Font("Segoe UI", 20F);
         nameInput.Location = new Point(10, 62);
         nameInput.Name = "nameInput";
         nameInput.PlaceholderText = "Tên khách hàng";
-        nameInput.Size = new Size(891, 44);
+        nameInput.Size = new Size(891, 52);
         nameInput.TabIndex = 0;
         // 
         // phoneInput
         // 
         phoneInput.Dock = DockStyle.Top;
-        phoneInput.Font = new Font("Segoe UI", 16F);
+        phoneInput.Font = new Font("Segoe UI", 20F);
         phoneInput.Location = new Point(10, 10);
         phoneInput.Name = "phoneInput";
         phoneInput.PlaceholderText = "Số điện thoại";
-        phoneInput.Size = new Size(891, 44);
+        phoneInput.Size = new Size(891, 52);
         phoneInput.TabIndex = 1;
         // 
         // cartGrid
@@ -76,12 +76,12 @@ partial class TransactionView
         cartGrid.ColumnHeadersHeight = 29;
         cartGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
         cartGrid.Dock = DockStyle.Fill;
-        cartGrid.Font = new Font("Segoe UI", 16F);
-        cartGrid.Location = new Point(0, 160);
+        cartGrid.Font = new Font("Segoe UI", 20F);
+        cartGrid.Location = new Point(0, 200);
         cartGrid.Name = "cartGrid";
         cartGrid.RowHeadersWidth = 51;
         cartGrid.RowTemplate.Height = 72;
-        cartGrid.Size = new Size(911, 372);
+        cartGrid.Size = new Size(911, 332);
         cartGrid.TabIndex = 0;
         // 
         // footerPanel
@@ -92,26 +92,26 @@ partial class TransactionView
         footerPanel.Location = new Point(0, 532);
         footerPanel.Name = "footerPanel";
         footerPanel.Padding = new Padding(10);
-        footerPanel.Size = new Size(911, 140);
+        footerPanel.Size = new Size(911, 160);
         footerPanel.TabIndex = 1;
         // 
         // transferButton
         // 
         transferButton.Dock = DockStyle.Right;
-        transferButton.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+        transferButton.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
         transferButton.Location = new Point(401, 10);
         transferButton.Name = "transferButton";
-        transferButton.Size = new Size(220, 120);
+        transferButton.Size = new Size(260, 140);
         transferButton.TabIndex = 0;
         transferButton.Text = "Chuyển khoản";
         // 
         // cashButton
         // 
         cashButton.Dock = DockStyle.Right;
-        cashButton.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+        cashButton.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
         cashButton.Location = new Point(661, 10);
         cashButton.Name = "cashButton";
-        cashButton.Size = new Size(200, 120);
+        cashButton.Size = new Size(240, 140);
         cashButton.TabIndex = 1;
         cashButton.Text = "Tiền mặt";
         // 

@@ -116,17 +116,17 @@ public partial class InventoryView : UserControl, IThemeable
     {
         var card = new Panel
         {
-            Width = 240,
-            Height = 300,
-            Margin = new Padding(8),
-            Padding = new Padding(8)
+            Width = 300,
+            Height = 360,
+            Margin = new Padding(10),
+            Padding = new Padding(10)
         };
         card.Tag = product.Name;
 
         var image = new PictureBox
         {
-            Width = 220,
-            Height = 200,
+            Width = 260,
+            Height = 240,
             Dock = DockStyle.Top,
             SizeMode = PictureBoxSizeMode.Zoom
         };
@@ -142,16 +142,16 @@ public partial class InventoryView : UserControl, IThemeable
         {
             Text = product.Name,
             Dock = DockStyle.Top,
-            Height = 40,
-            Font = new Font("Segoe UI", 13F, FontStyle.Bold)
+            Height = 50,
+            Font = new Font("Segoe UI", 16F, FontStyle.Bold)
         };
 
         var priceLabel = new Label
         {
             Text = $"{product.Price:n0} đ",
             Dock = DockStyle.Top,
-            Height = 32,
-            Font = new Font("Segoe UI", 12F, FontStyle.Regular)
+            Height = 40,
+            Font = new Font("Segoe UI", 14F, FontStyle.Regular)
         };
 
         card.Controls.Add(priceLabel);
