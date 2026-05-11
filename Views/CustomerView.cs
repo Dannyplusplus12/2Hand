@@ -52,6 +52,20 @@ public partial class CustomerView : UserControl, IThemeable
         historyPanel.Controls.Clear();
     }
 
+    private async void AddCustomerButton_Click(object? sender, EventArgs e)
+    {
+        using var dialog = new EditCustomerForm(new Models.Customer { FullName = string.Empty, Phone = string.Empty });
+        if (dialog.ShowDialog(this) != DialogResult.OK)
+        {
+            return;
+        }
+
+        using var context = Data.DbContextFactory.Create();
+        var service = new Services.CustomerService(context);
+        await service.AddAsync(dialog.Customer);
+        await LoadCustomersAsync();
+    }
+
     private async Task LoadCustomerHistoryAsync(Models.Customer customer)
     {
         using var context = Data.DbContextFactory.Create();
@@ -74,6 +88,28 @@ public partial class CustomerView : UserControl, IThemeable
         if (customerList.SelectedItems[0].Tag is Models.Customer customer)
         {
             _ = LoadCustomerHistoryAsync(customer);
+        }
+    }
+
+    private void CustomerList_DoubleClick(object? sender, EventArgs e)
+    {
+        if (customerList.SelectedItems.Count == 0)
+        {
+            return;
+        }
+
+        if (customerList.SelectedItems[0].Tag is Models.Customer customer)
+        {
+            using var dialog = new EditCustomerForm(customer);
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            using var context = Data.DbContextFactory.Create();
+            var service = new Services.CustomerService(context);
+            _ = service.UpdateAsync(dialog.Customer);
+            _ = LoadCustomersAsync();
         }
     }
 

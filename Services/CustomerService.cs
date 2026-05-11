@@ -24,4 +24,22 @@ public class CustomerService
         await context.SaveChangesAsync();
         return customer;
     }
+
+    public async Task UpdateAsync(Customer customer)
+    {
+        context.Customers.Update(customer);
+        await context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var entity = await context.Customers.FindAsync(id);
+        if (entity == null)
+        {
+            return;
+        }
+
+        context.Customers.Remove(entity);
+        await context.SaveChangesAsync();
+    }
 }

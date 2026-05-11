@@ -125,6 +125,12 @@ public partial class TransactionView : UserControl, IThemeable
             quantity = product.Quantity;
         }
 
+        if (quantity <= 0)
+        {
+            cartGrid.Rows.RemoveAt(e.RowIndex);
+            return;
+        }
+
         cartGrid.Rows[e.RowIndex].Cells[2].Value = product.Price;
         cartGrid.Rows[e.RowIndex].Cells[3].Value = product.Price * quantity;
     }

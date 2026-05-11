@@ -32,4 +32,5 @@
 - Transaction view now mirrors inventory layout with left product list and right cart panel
 
 ## Pending Tasks
+ - Add user authentication feature
 - Wire up remaining UI views with data and navigation actions
