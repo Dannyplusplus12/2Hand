@@ -29,6 +29,7 @@
 - Customer list with transaction history cards
 - Transaction view checkout workflow and payment popup
 - Dashboard metrics and recent transactions
+- Transaction view now mirrors inventory layout with left product list and right cart panel
 
 ## Pending Tasks
 - Wire up remaining UI views with data and navigation actions

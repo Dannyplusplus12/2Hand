@@ -4,6 +4,7 @@ public partial class TransactionView : UserControl, IThemeable
 {
     private List<Models.Product> products = new();
     private Models.Customer? selectedCustomer;
+    private List<Models.Product> filteredProducts = new();
 
     public TransactionView()
     {
@@ -34,6 +35,11 @@ public partial class TransactionView : UserControl, IThemeable
         cashButton.ForeColor = Color.White;
         transferButton.BackColor = Color.FromArgb(39, 174, 96);
         transferButton.ForeColor = Color.White;
+
+        searchPanel.BackColor = background;
+        productPanel.BackColor = background;
+        searchBox.BackColor = panelBackground;
+        searchBox.ForeColor = foreground;
     }
 
     private async void transferButton_Click(object sender, EventArgs e)
@@ -52,6 +58,26 @@ public partial class TransactionView : UserControl, IThemeable
         using var context = Data.DbContextFactory.Create();
         var service = new Services.ProductService(context);
         products = await service.GetAllAsync();
+        filteredProducts = products.ToList();
+        RenderProductCards();
+    }
+
+    private void RenderProductCards()
+    {
+        productPanel.Controls.Clear();
+        foreach (var product in filteredProducts)
+        {
+            productPanel.Controls.Add(CreateProductCard(product));
+        }
+    }
+
+    private void SearchBox_TextChanged(object? sender, EventArgs e)
+    {
+        var query = searchBox.Text.Trim();
+        filteredProducts = string.IsNullOrWhiteSpace(query)
+            ? products.ToList()
+            : products.Where(p => p.Name.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
+        RenderProductCards();
     }
 
     private async void PhoneInput_TextChanged(object? sender, EventArgs e)
@@ -166,5 +192,97 @@ public partial class TransactionView : UserControl, IThemeable
         MessageBox.Show("Voucher system coming soon", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         cartGrid.Rows.Clear();
         await LoadProductsAsync();
+    }
+
+    private Control CreateProductCard(Models.Product product)
+    {
+        var card = new Panel
+        {
+            Width = 220,
+            Height = 260,
+            Margin = new Padding(8),
+            Padding = new Padding(8)
+        };
+        card.Tag = product;
+
+        var image = new PictureBox
+        {
+            Width = 200,
+            Height = 160,
+            Dock = DockStyle.Top,
+            SizeMode = PictureBoxSizeMode.Zoom
+        };
+        var imagePath = string.IsNullOrWhiteSpace(product.ImagePath)
+            ? Path.Combine(AppContext.BaseDirectory, "rand", "item_placeholder.jpg")
+            : product.ImagePath;
+        if (File.Exists(imagePath))
+        {
+            image.Image = CenterCropSquare(Image.FromFile(imagePath), image.Width, image.Height);
+        }
+
+        var nameLabel = new Label
+        {
+            Text = product.Name,
+            Dock = DockStyle.Top,
+            Height = 36,
+            Font = new Font("Segoe UI", 12F, FontStyle.Bold)
+        };
+
+        var priceLabel = new Label
+        {
+            Text = $"{product.Price:n0} đ",
+            Dock = DockStyle.Top,
+            Height = 28,
+            Font = new Font("Segoe UI", 11F, FontStyle.Regular)
+        };
+
+        card.Controls.Add(priceLabel);
+        card.Controls.Add(nameLabel);
+        card.Controls.Add(image);
+        card.Click += (_, _) => AddProductToCart(product);
+        foreach (Control child in card.Controls)
+        {
+            child.Click += (_, _) => AddProductToCart(product);
+        }
+        return card;
+    }
+
+    private void AddProductToCart(Models.Product product)
+    {
+        foreach (DataGridViewRow row in cartGrid.Rows)
+        {
+            if (row.Cells[0].Value?.ToString() == product.Name)
+            {
+                var currentQuantity = Convert.ToInt32(row.Cells[1].Value ?? 1);
+                var newQuantity = Math.Min(currentQuantity + 1, product.Quantity);
+                row.Cells[1].Value = newQuantity;
+                row.Cells[2].Value = product.Price;
+                row.Cells[3].Value = product.Price * newQuantity;
+                return;
+            }
+        }
+
+        var rowIndex = cartGrid.Rows.Add();
+        var row = cartGrid.Rows[rowIndex];
+        row.Cells[0].Value = product.Name;
+        row.Cells[1].Value = 1;
+        row.Cells[2].Value = product.Price;
+        row.Cells[3].Value = product.Price;
+    }
+
+    private static Image CenterCropSquare(Image source, int width, int height)
+    {
+        var size = Math.Min(source.Width, source.Height);
+        var cropArea = new Rectangle(
+            (source.Width - size) / 2,
+            (source.Height - size) / 2,
+            size,
+            size);
+
+        var target = new Bitmap(width, height);
+        using var graphics = Graphics.FromImage(target);
+        graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+        graphics.DrawImage(source, new Rectangle(0, 0, width, height), cropArea, GraphicsUnit.Pixel);
+        return target;
     }
 }
