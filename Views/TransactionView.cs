@@ -17,23 +17,23 @@ public class TransactionView : UserControl, IThemeable
         headerPanel = new Panel
         {
             Dock = DockStyle.Top,
-            Height = 180,
+            Height = 200,
             Padding = new Padding(10)
         };
 
         phoneInput = new TextBox
         {
             Dock = DockStyle.Top,
-            Height = 60,
-            Font = new Font("Segoe UI", 18F, FontStyle.Regular),
+            Height = 70,
+            Font = new Font("Segoe UI", 20F, FontStyle.Regular),
             PlaceholderText = "Số điện thoại"
         };
 
         nameInput = new TextBox
         {
             Dock = DockStyle.Top,
-            Height = 60,
-            Font = new Font("Segoe UI", 18F, FontStyle.Regular),
+            Height = 70,
+            Font = new Font("Segoe UI", 20F, FontStyle.Regular),
             PlaceholderText = "Tên khách hàng"
         };
 
@@ -44,9 +44,9 @@ public class TransactionView : UserControl, IThemeable
         {
             Dock = DockStyle.Fill,
             AllowUserToAddRows = false,
-            RowTemplate = { Height = 64 },
+            RowTemplate = { Height = 72 },
             AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-            Font = new Font("Segoe UI", 18F, FontStyle.Regular)
+            Font = new Font("Segoe UI", 20F, FontStyle.Regular)
         };
         cartGrid.Columns.Add("Product", "Sản phẩm");
         cartGrid.Columns.Add("Quantity", "Số lượng");
@@ -56,7 +56,7 @@ public class TransactionView : UserControl, IThemeable
         footerPanel = new Panel
         {
             Dock = DockStyle.Bottom,
-            Height = 140,
+            Height = 160,
             Padding = new Padding(10)
         };
 
@@ -64,16 +64,16 @@ public class TransactionView : UserControl, IThemeable
         {
             Text = "Tiền mặt",
             Dock = DockStyle.Right,
-            Width = 220,
-            Font = new Font("Segoe UI", 18F, FontStyle.Bold)
+            Width = 240,
+            Font = new Font("Segoe UI", 20F, FontStyle.Bold)
         };
 
         transferButton = new Button
         {
             Text = "Chuyển khoản",
             Dock = DockStyle.Right,
-            Width = 240,
-            Font = new Font("Segoe UI", 18F, FontStyle.Bold)
+            Width = 260,
+            Font = new Font("Segoe UI", 20F, FontStyle.Bold)
         };
 
         footerPanel.Controls.Add(transferButton);

@@ -14,21 +14,21 @@
 - TransactionItems: Id, TransactionId, ProductId, Quantity, UnitPrice
 
 ## Implemented Services
-- None
+- ProductService
+- CustomerService
+- TransactionService
+- DbContextFactory for SQLite 2hand_data.db
 
 ## Implemented Utilities
 - SampleDataGenerator for UI test data
 
 ## Implemented UI
-- Inventory sample data button to render mock cards
-
-## Implemented UI
-- MainForm shell with sidebar, header, theme, and view switching
+- MainForm shell with sidebar and simplified header
 - Dashboard, Inventory, Customer, Transaction view scaffolds
+- Inventory split layout with add form, sample data rendering, and search filter
+- Customer transaction cards with dropdown details
 
 ## Pending Tasks
-- Configure SQLite connection and migrations
 - Wire up UI views with data, CRUD, and navigation actions
-- Implement product image center-crop handling and placeholders
 - Implement transactions workflow with cart, validation, payment popup, and stock deduction in a transaction
 - Add dashboard metrics and recent transactions navigation

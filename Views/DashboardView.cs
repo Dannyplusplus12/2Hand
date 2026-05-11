@@ -41,7 +41,7 @@ public class DashboardView : UserControl, IThemeable
             Dock = DockStyle.Fill,
             View = View.Details,
             FullRowSelect = true,
-            Font = new Font("Segoe UI", 18F, FontStyle.Regular)
+            Font = new Font("Segoe UI", 20F, FontStyle.Regular)
         };
         recentTransactions.Columns.Add("Khách hàng", 260);
         recentTransactions.Columns.Add("SĐT", 200);
@@ -57,8 +57,8 @@ public class DashboardView : UserControl, IThemeable
     {
         var panel = new Panel
         {
-            Width = 520,
-            Height = 260,
+            Width = 560,
+            Height = 280,
             Margin = new Padding(10),
             Padding = new Padding(20)
         };
@@ -67,15 +67,15 @@ public class DashboardView : UserControl, IThemeable
         {
             Text = title,
             Dock = DockStyle.Top,
-            Height = 60,
-            Font = new Font("Segoe UI", 18F, FontStyle.Bold)
+            Height = 70,
+            Font = new Font("Segoe UI", 20F, FontStyle.Bold)
         };
 
         var valueLabel = new Label
         {
             Text = value,
             Dock = DockStyle.Fill,
-            Font = new Font("Segoe UI", 28F, FontStyle.Bold),
+            Font = new Font("Segoe UI", 32F, FontStyle.Bold),
             TextAlign = ContentAlignment.MiddleLeft
         };
 

@@ -8,9 +8,6 @@ public class MainForm : Form
     private readonly Panel header;
     private readonly Panel content;
     private readonly Label titleLabel;
-    private readonly ComboBox languageDropdown;
-    private readonly IconButton settingsButton;
-    private readonly TextBox apiKeyInput;
     private readonly IconButton dashboardButton;
     private readonly IconButton inventoryButton;
     private readonly IconButton customerButton;
@@ -49,44 +46,10 @@ public class MainForm : Form
         titleLabel = new Label
         {
             Text = "Tổng quan",
-            Dock = DockStyle.Left,
+            Dock = DockStyle.Fill,
             AutoSize = false,
             TextAlign = ContentAlignment.MiddleLeft,
-            Width = 520,
-            Font = new Font("Segoe UI", 28F, FontStyle.Bold)
-        };
-
-        settingsButton = new IconButton
-        {
-            Text = "Settings",
-            Dock = DockStyle.Right,
-            Width = 240,
-            Height = 70,
-            IconChar = IconChar.Gear,
-            IconColor = Color.White,
-            IconSize = 24,
-            TextImageRelation = TextImageRelation.ImageBeforeText,
-            Font = new Font("Segoe UI", 18F, FontStyle.Bold)
-        };
-        settingsButton.Click += (_, _) => apiKeyInput.Visible = !apiKeyInput.Visible;
-
-        languageDropdown = new ComboBox
-        {
-            Dock = DockStyle.Right,
-            Width = 260,
-            DropDownStyle = ComboBoxStyle.DropDownList,
-            Font = new Font("Segoe UI", 18F, FontStyle.Regular)
-        };
-        languageDropdown.Items.AddRange(["Tiếng Việt", "English"]);
-        languageDropdown.SelectedIndex = 0;
-
-        apiKeyInput = new TextBox
-        {
-            Dock = DockStyle.Right,
-            Width = 320,
-            Font = new Font("Segoe UI", 18F, FontStyle.Regular),
-            Visible = false,
-            UseSystemPasswordChar = true
+            Font = new Font("Segoe UI", 32F, FontStyle.Bold)
         };
 
         dashboardButton = CreateSidebarButton("Tổng quan", IconChar.ChartPie);
@@ -104,9 +67,6 @@ public class MainForm : Form
         sidebar.Controls.Add(inventoryButton);
         sidebar.Controls.Add(dashboardButton);
 
-        header.Controls.Add(settingsButton);
-        header.Controls.Add(languageDropdown);
-        header.Controls.Add(apiKeyInput);
         header.Controls.Add(titleLabel);
 
         Controls.Add(content);
@@ -174,7 +134,7 @@ public class MainForm : Form
     {
         var background = darkMode ? Color.FromArgb(24, 24, 28) : Color.White;
         var panelBackground = darkMode ? Color.FromArgb(32, 32, 36) : Color.FromArgb(240, 240, 240);
-        var accent = darkMode ? Color.FromArgb(52, 152, 219) : Color.FromArgb(41, 128, 185);
+        _ = darkMode ? Color.FromArgb(52, 152, 219) : Color.FromArgb(41, 128, 185);
         var foreground = darkMode ? Color.White : Color.FromArgb(30, 30, 30);
 
         BackColor = background;
@@ -183,15 +143,7 @@ public class MainForm : Form
         content.BackColor = background;
 
         titleLabel.ForeColor = foreground;
-        languageDropdown.BackColor = panelBackground;
-        languageDropdown.ForeColor = foreground;
-        apiKeyInput.BackColor = background;
-        apiKeyInput.ForeColor = foreground;
-
-        settingsButton.BackColor = accent;
-        settingsButton.ForeColor = Color.White;
-        settingsButton.FlatStyle = FlatStyle.Flat;
-        settingsButton.FlatAppearance.BorderSize = 0;
+        _ = accent;
 
         foreach (var button in new[] { dashboardButton, inventoryButton, customerButton, transactionButton })
         {

@@ -6,6 +6,7 @@ namespace _2Hand
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+            using var _ = Data.DbContextFactory.Create();
             Application.Run(new Views.MainForm());
         }
     }
