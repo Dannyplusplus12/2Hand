@@ -73,6 +73,8 @@ public partial class MainForm : Form
             {
                 themeable.ApplyTheme(darkMode);
             }
+        }
+    }
 
     private void DashboardButton_Click(object? sender, EventArgs e) => ShowView("dashboard");
 
@@ -81,6 +83,4 @@ public partial class MainForm : Form
     private void CustomerButton_Click(object? sender, EventArgs e) => ShowView("customer");
 
     private void TransactionButton_Click(object? sender, EventArgs e) => ShowView("transaction");
-        }
-    }
 }

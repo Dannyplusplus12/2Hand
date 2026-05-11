@@ -39,4 +39,9 @@ public partial class TransactionView : UserControl, IThemeable
     {
 
     }
+
+    private void cartGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+    {
+
+    }
 }

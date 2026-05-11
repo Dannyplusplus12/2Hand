@@ -67,14 +67,13 @@ public partial class InventoryView : UserControl, IThemeable
                 card.Visible = true;
                 continue;
             }
+            card.Visible = string.IsNullOrWhiteSpace(query) || name.Contains(query, StringComparison.OrdinalIgnoreCase);
+        }
+    }
 
     private async void AddButton_Click(object? sender, EventArgs e)
     {
         await AddProductAsync();
-    }
-
-            card.Visible = string.IsNullOrWhiteSpace(query) || name.Contains(query, StringComparison.OrdinalIgnoreCase);
-        }
     }
 
     private async Task AddProductAsync()

@@ -26,13 +26,13 @@ partial class TransactionView
         nameInput = new TextBox();
         phoneInput = new TextBox();
         cartGrid = new DataGridView();
-        footerPanel = new Panel();
-        transferButton = new Button();
-        cashButton = new Button();
         dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
         dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
         dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
         dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+        footerPanel = new Panel();
+        transferButton = new Button();
+        cashButton = new Button();
         headerPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)cartGrid).BeginInit();
         footerPanel.SuspendLayout();
@@ -73,7 +73,7 @@ partial class TransactionView
         // 
         cartGrid.AllowUserToAddRows = false;
         cartGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        cartGrid.ColumnHeadersHeight = 29;
+        cartGrid.ColumnHeadersHeight = 60;
         cartGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
         cartGrid.Dock = DockStyle.Fill;
         cartGrid.Font = new Font("Segoe UI", 20F);
@@ -83,6 +83,31 @@ partial class TransactionView
         cartGrid.RowTemplate.Height = 72;
         cartGrid.Size = new Size(911, 332);
         cartGrid.TabIndex = 0;
+        cartGrid.CellContentClick += cartGrid_CellContentClick_1;
+        // 
+        // dataGridViewTextBoxColumn1
+        // 
+        dataGridViewTextBoxColumn1.HeaderText = "Sản phẩm";
+        dataGridViewTextBoxColumn1.MinimumWidth = 6;
+        dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+        // 
+        // dataGridViewTextBoxColumn2
+        // 
+        dataGridViewTextBoxColumn2.HeaderText = "Số lượng";
+        dataGridViewTextBoxColumn2.MinimumWidth = 6;
+        dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+        // 
+        // dataGridViewTextBoxColumn3
+        // 
+        dataGridViewTextBoxColumn3.HeaderText = "Đơn giá";
+        dataGridViewTextBoxColumn3.MinimumWidth = 6;
+        dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+        // 
+        // dataGridViewTextBoxColumn4
+        // 
+        dataGridViewTextBoxColumn4.HeaderText = "Thành tiền";
+        dataGridViewTextBoxColumn4.MinimumWidth = 6;
+        dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
         // 
         // footerPanel
         // 
@@ -114,30 +139,6 @@ partial class TransactionView
         cashButton.Size = new Size(240, 140);
         cashButton.TabIndex = 1;
         cashButton.Text = "Tiền mặt";
-        // 
-        // dataGridViewTextBoxColumn1
-        // 
-        dataGridViewTextBoxColumn1.HeaderText = "Sản phẩm";
-        dataGridViewTextBoxColumn1.MinimumWidth = 6;
-        dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-        // 
-        // dataGridViewTextBoxColumn2
-        // 
-        dataGridViewTextBoxColumn2.HeaderText = "Số lượng";
-        dataGridViewTextBoxColumn2.MinimumWidth = 6;
-        dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-        // 
-        // dataGridViewTextBoxColumn3
-        // 
-        dataGridViewTextBoxColumn3.HeaderText = "Đơn giá";
-        dataGridViewTextBoxColumn3.MinimumWidth = 6;
-        dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-        // 
-        // dataGridViewTextBoxColumn4
-        // 
-        dataGridViewTextBoxColumn4.HeaderText = "Thành tiền";
-        dataGridViewTextBoxColumn4.MinimumWidth = 6;
-        dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
         // 
         // TransactionView
         // 
