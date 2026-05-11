@@ -28,6 +28,8 @@ public partial class DashboardView : UserControl, IThemeable
                 label.ForeColor = foreground;
                 label.BackColor = cardBackground;
             }
+        }
+    }
 
     private async Task LoadMetricsAsync()
     {
