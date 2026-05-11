@@ -5,7 +5,7 @@ namespace _2Hand.Views;
 public partial class MainForm : Form
 {
     private readonly Dictionary<string, UserControl> views = new();
-    private bool darkMode = true;
+    private bool darkMode = false;
 
     public MainForm()
     {
@@ -50,9 +50,9 @@ public partial class MainForm : Form
 
     private void ApplyTheme()
     {
-        var background = darkMode ? Color.FromArgb(24, 24, 28) : Color.White;
-        var panelBackground = darkMode ? Color.FromArgb(32, 32, 36) : Color.FromArgb(240, 240, 240);
-        var foreground = darkMode ? Color.White : Color.FromArgb(30, 30, 30);
+        var background = Color.White;
+        var panelBackground = Color.FromArgb(240, 240, 240);
+        var foreground = Color.FromArgb(30, 30, 30);
 
         BackColor = background;
         sidebar.BackColor = panelBackground;
@@ -83,4 +83,13 @@ public partial class MainForm : Form
     private void CustomerButton_Click(object? sender, EventArgs e) => ShowView("customer");
 
     private void TransactionButton_Click(object? sender, EventArgs e) => ShowView("transaction");
+
+    public void NavigateToCustomer(int customerId)
+    {
+        ShowView("customer");
+        if (views["customer"] is CustomerView customerView)
+        {
+            customerView.SelectCustomerById(customerId);
+        }
+    }
 }

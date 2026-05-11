@@ -71,4 +71,40 @@ public class TransactionService
             .OrderByDescending(t => t.CreatedAt)
             .ToListAsync();
     }
+
+    public async Task<DashboardSummary> GetDashboardSummaryAsync()
+    {
+        var startOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+        var monthRevenue = await context.Transactions
+            .AsNoTracking()
+            .Where(t => t.CreatedAt >= startOfMonth)
+            .SumAsync(t => (decimal?)t.TotalAmount) ?? 0;
+
+        var totalStock = await context.Products.AsNoTracking().SumAsync(p => (int?)p.Quantity) ?? 0;
+        var lowStockCount = await context.Products.AsNoTracking().CountAsync(p => p.Quantity <= 2);
+
+        var recentTransactions = await context.Transactions
+            .AsNoTracking()
+            .Include(t => t.Customer)
+            .OrderByDescending(t => t.CreatedAt)
+            .Take(10)
+            .Select(t => new RecentTransaction
+            {
+                Id = t.Id,
+                CustomerId = t.CustomerId,
+                CustomerName = t.Customer != null ? t.Customer.FullName : string.Empty,
+                CustomerPhone = t.Customer != null ? t.Customer.Phone : string.Empty,
+                TotalAmount = t.TotalAmount,
+                CreatedAt = t.CreatedAt
+            })
+            .ToListAsync();
+
+        return new DashboardSummary
+        {
+            MonthRevenue = monthRevenue,
+            TotalStock = totalStock,
+            LowStockCount = lowStockCount,
+            RecentTransactions = recentTransactions
+        };
+    }
 }

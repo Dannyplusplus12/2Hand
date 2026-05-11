@@ -71,7 +71,8 @@ partial class TransactionView
         // 
         // cartGrid
         // 
-        cartGrid.AllowUserToAddRows = false;
+        cartGrid.AllowUserToAddRows = true;
+        cartGrid.AllowUserToDeleteRows = true;
         cartGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         cartGrid.ColumnHeadersHeight = 60;
         cartGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
@@ -83,29 +84,28 @@ partial class TransactionView
         cartGrid.RowTemplate.Height = 72;
         cartGrid.Size = new Size(911, 332);
         cartGrid.TabIndex = 0;
-        cartGrid.CellContentClick += cartGrid_CellContentClick_1;
         // 
         // dataGridViewTextBoxColumn1
         // 
-        dataGridViewTextBoxColumn1.HeaderText = "Sản phẩm";
+        dataGridViewTextBoxColumn1.HeaderText = "Sản phẩm"; // Keeping the column header unchanged
         dataGridViewTextBoxColumn1.MinimumWidth = 6;
         dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
         // 
         // dataGridViewTextBoxColumn2
         // 
-        dataGridViewTextBoxColumn2.HeaderText = "Số lượng";
+        dataGridViewTextBoxColumn2.HeaderText = "Số lượng"; // Keeping the column header unchanged
         dataGridViewTextBoxColumn2.MinimumWidth = 6;
         dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
         // 
         // dataGridViewTextBoxColumn3
         // 
-        dataGridViewTextBoxColumn3.HeaderText = "Đơn giá";
+        dataGridViewTextBoxColumn3.HeaderText = "Đơn giá"; // Keeping the column header unchanged
         dataGridViewTextBoxColumn3.MinimumWidth = 6;
         dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
         // 
         // dataGridViewTextBoxColumn4
         // 
-        dataGridViewTextBoxColumn4.HeaderText = "Thành tiền";
+        dataGridViewTextBoxColumn4.HeaderText = "Thành tiền"; // Keeping the column header unchanged
         dataGridViewTextBoxColumn4.MinimumWidth = 6;
         dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
         // 
@@ -129,6 +129,7 @@ partial class TransactionView
         transferButton.Size = new Size(260, 140);
         transferButton.TabIndex = 0;
         transferButton.Text = "Chuyển khoản";
+        transferButton.Click += transferButton_Click;
         // 
         // cashButton
         // 
@@ -139,6 +140,7 @@ partial class TransactionView
         cashButton.Size = new Size(240, 140);
         cashButton.TabIndex = 1;
         cashButton.Text = "Tiền mặt";
+        cashButton.Click += cashButton_Click;
         // 
         // TransactionView
         // 

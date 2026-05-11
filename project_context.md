@@ -27,8 +27,8 @@
 - Dashboard, Inventory, Customer, Transaction view scaffolds
 - Inventory split layout with add form, CRUD list, and search filter
 - Customer list with transaction history cards
+- Transaction view checkout workflow and payment popup
+- Dashboard metrics and recent transactions
 
 ## Pending Tasks
 - Wire up remaining UI views with data and navigation actions
-- Implement transactions workflow with cart, validation, payment popup, and stock deduction in a transaction
-- Add dashboard metrics and recent transactions navigation

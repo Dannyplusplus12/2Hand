@@ -10,11 +10,22 @@ public partial class CustomerView : UserControl, IThemeable
         Load += async (_, _) => await LoadCustomersAsync();
     }
 
+    public void SelectCustomerById(int customerId)
+    {
+        var match = customerList.Items.Cast<ListViewItem>().FirstOrDefault(item => item.Tag is Models.Customer customer && customer.Id == customerId);
+        if (match != null)
+        {
+            match.Selected = true;
+            match.Focused = true;
+            match.EnsureVisible();
+        }
+    }
+
     public void ApplyTheme(bool darkMode)
     {
-        var background = darkMode ? Color.FromArgb(24, 24, 28) : Color.White;
-        var panelBackground = darkMode ? Color.FromArgb(40, 40, 48) : Color.FromArgb(245, 245, 245);
-        var foreground = darkMode ? Color.White : Color.FromArgb(30, 30, 30);
+        var background = Color.White;
+        var panelBackground = Color.FromArgb(245, 245, 245);
+        var foreground = Color.FromArgb(30, 30, 30);
 
         BackColor = background;
         layout.BackColor = background;
