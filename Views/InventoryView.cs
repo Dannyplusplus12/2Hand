@@ -1,112 +1,10 @@
 namespace _2Hand.Views;
 
-public class InventoryView : UserControl, IThemeable
+public partial class InventoryView : UserControl, IThemeable
 {
-    private readonly SplitContainer layout;
-    private readonly FlowLayoutPanel cardsPanel;
-    private readonly TextBox searchBox;
-    private readonly Button sampleButton;
-    private readonly Panel headerPanel;
-    private readonly Panel formPanel;
-    private readonly TextBox nameInput;
-    private readonly TextBox priceInput;
-    private readonly TextBox quantityInput;
-    private readonly TextBox imageInput;
-    private readonly Button addButton;
-
     public InventoryView()
     {
-        Dock = DockStyle.Fill;
-
-        layout = new SplitContainer
-        {
-            Dock = DockStyle.Fill,
-            SplitterDistance = 980,
-            Panel1MinSize = 800,
-            Panel2MinSize = 380
-        };
-        layout.SizeChanged += (_, _) => layout.SplitterDistance = (int)(layout.Width * 0.7);
-
-        headerPanel = new Panel
-        {
-            Dock = DockStyle.Top,
-            Height = 120,
-            Padding = new Padding(10)
-        };
-
-        searchBox = new TextBox
-        {
-            Dock = DockStyle.Fill,
-            Font = new Font("Segoe UI", 18F, FontStyle.Regular),
-            PlaceholderText = "Tìm kiếm sản phẩm"
-        };
-
-        sampleButton = new Button
-        {
-            Text = "Sample",
-            Dock = DockStyle.Right,
-            Width = 180,
-            Font = new Font("Segoe UI", 18F, FontStyle.Bold)
-        };
-        sampleButton.Click += (_, _) => ShowSample();
-
-        headerPanel.Controls.Add(searchBox);
-        headerPanel.Controls.Add(sampleButton);
-
-        cardsPanel = new FlowLayoutPanel
-        {
-            Dock = DockStyle.Fill,
-            AutoScroll = true,
-            Padding = new Padding(10)
-        };
-        searchBox.TextChanged += (_, _) => FilterCards();
-
-        var leftPanel = new Panel
-        {
-            Dock = DockStyle.Fill
-        };
-        leftPanel.Controls.Add(cardsPanel);
-        leftPanel.Controls.Add(headerPanel);
-
-        formPanel = new Panel
-        {
-            Dock = DockStyle.Fill,
-            Padding = new Padding(20)
-        };
-
-        var formTitle = new Label
-        {
-            Text = "Thêm sản phẩm",
-            Dock = DockStyle.Top,
-            Height = 60,
-            Font = new Font("Segoe UI", 20F, FontStyle.Bold)
-        };
-
-        nameInput = CreateFormInput("Tên sản phẩm");
-        priceInput = CreateFormInput("Giá");
-        quantityInput = CreateFormInput("Số lượng");
-        imageInput = CreateFormInput("Đường dẫn ảnh");
-
-        addButton = new Button
-        {
-            Text = "Thêm",
-            Dock = DockStyle.Top,
-            Height = 60,
-            Font = new Font("Segoe UI", 18F, FontStyle.Bold)
-        };
-        addButton.Click += async (_, _) => await AddProductAsync();
-
-        formPanel.Controls.Add(addButton);
-        formPanel.Controls.Add(imageInput);
-        formPanel.Controls.Add(quantityInput);
-        formPanel.Controls.Add(priceInput);
-        formPanel.Controls.Add(nameInput);
-        formPanel.Controls.Add(formTitle);
-
-        layout.Panel1.Controls.Add(leftPanel);
-        layout.Panel2.Controls.Add(formPanel);
-
-        Controls.Add(layout);
+        InitializeComponent();
     }
 
     public void ApplyTheme(bool darkMode)
@@ -144,6 +42,21 @@ public class InventoryView : UserControl, IThemeable
         }
     }
 
+    private void SampleButton_Click(object? sender, EventArgs e)
+    {
+        ShowSample();
+    }
+
+    private void SearchBox_TextChanged(object? sender, EventArgs e)
+    {
+        FilterCards();
+    }
+
+    private void Layout_SizeChanged(object? sender, EventArgs e)
+    {
+        layout.SplitterDistance = (int)(layout.Width * 0.7);
+    }
+
     private void FilterCards()
     {
         var query = searchBox.Text.Trim();
@@ -154,6 +67,11 @@ public class InventoryView : UserControl, IThemeable
                 card.Visible = true;
                 continue;
             }
+
+    private async void AddButton_Click(object? sender, EventArgs e)
+    {
+        await AddProductAsync();
+    }
 
             card.Visible = string.IsNullOrWhiteSpace(query) || name.Contains(query, StringComparison.OrdinalIgnoreCase);
         }

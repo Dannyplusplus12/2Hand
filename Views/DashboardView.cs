@@ -1,87 +1,10 @@
 namespace _2Hand.Views;
 
-public class DashboardView : UserControl, IThemeable
+public partial class DashboardView : UserControl, IThemeable
 {
-    private readonly FlowLayoutPanel cardsPanel;
-    private readonly Panel recentPanel;
-    private readonly Label revenueLabel;
-    private readonly Label stockLabel;
-    private readonly Label lowStockLabel;
-    private readonly ListView recentTransactions;
-
     public DashboardView()
     {
-        Dock = DockStyle.Fill;
-        cardsPanel = new FlowLayoutPanel
-        {
-            Dock = DockStyle.Top,
-            Height = 320,
-            AutoScroll = false,
-            FlowDirection = FlowDirection.LeftToRight,
-            WrapContents = false,
-            Padding = new Padding(10)
-        };
-
-        revenueLabel = CreateCard("Doanh thu tháng này", "0 đ");
-        stockLabel = CreateCard("Tổng tồn kho", "0");
-        lowStockLabel = CreateCard("Cảnh báo hết hàng", "0");
-
-        cardsPanel.Controls.Add(revenueLabel.Parent);
-        cardsPanel.Controls.Add(stockLabel.Parent);
-        cardsPanel.Controls.Add(lowStockLabel.Parent);
-
-        recentPanel = new Panel
-        {
-            Dock = DockStyle.Fill,
-            Padding = new Padding(10)
-        };
-
-        recentTransactions = new ListView
-        {
-            Dock = DockStyle.Fill,
-            View = View.Details,
-            FullRowSelect = true,
-            Font = new Font("Segoe UI", 20F, FontStyle.Regular)
-        };
-        recentTransactions.Columns.Add("Khách hàng", 260);
-        recentTransactions.Columns.Add("SĐT", 200);
-        recentTransactions.Columns.Add("Tổng tiền", 200);
-        recentTransactions.Columns.Add("Ngày", 240);
-
-        recentPanel.Controls.Add(recentTransactions);
-        Controls.Add(recentPanel);
-        Controls.Add(cardsPanel);
-    }
-
-    private Label CreateCard(string title, string value)
-    {
-        var panel = new Panel
-        {
-            Width = 560,
-            Height = 280,
-            Margin = new Padding(10),
-            Padding = new Padding(20)
-        };
-
-        var titleLabel = new Label
-        {
-            Text = title,
-            Dock = DockStyle.Top,
-            Height = 70,
-            Font = new Font("Segoe UI", 20F, FontStyle.Bold)
-        };
-
-        var valueLabel = new Label
-        {
-            Text = value,
-            Dock = DockStyle.Fill,
-            Font = new Font("Segoe UI", 32F, FontStyle.Bold),
-            TextAlign = ContentAlignment.MiddleLeft
-        };
-
-        panel.Controls.Add(valueLabel);
-        panel.Controls.Add(titleLabel);
-        return valueLabel;
+        InitializeComponent();
     }
 
     public void ApplyTheme(bool darkMode)

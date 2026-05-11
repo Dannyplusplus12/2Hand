@@ -1,45 +1,10 @@
 namespace _2Hand.Views;
 
-public class CustomerView : UserControl, IThemeable
+public partial class CustomerView : UserControl, IThemeable
 {
-    private readonly SplitContainer layout;
-    private readonly ListView customerList;
-    private readonly FlowLayoutPanel historyPanel;
-
     public CustomerView()
     {
-        Dock = DockStyle.Fill;
-
-        layout = new SplitContainer
-        {
-            Dock = DockStyle.Fill,
-            SplitterDistance = 520,
-            Panel1MinSize = 420,
-            Panel2MinSize = 600
-        };
-        layout.SizeChanged += (_, _) => layout.SplitterDistance = (int)(layout.Width * 0.4);
-
-        customerList = new ListView
-        {
-            Dock = DockStyle.Fill,
-            View = View.Details,
-            FullRowSelect = true,
-            Font = new Font("Segoe UI", 18F, FontStyle.Regular)
-        };
-        customerList.Columns.Add("Tên", 220);
-        customerList.Columns.Add("SĐT", 160);
-
-        historyPanel = new FlowLayoutPanel
-        {
-            Dock = DockStyle.Fill,
-            AutoScroll = true,
-            Padding = new Padding(10)
-        };
-
-        layout.Panel1.Controls.Add(customerList);
-        layout.Panel2.Controls.Add(historyPanel);
-        Controls.Add(layout);
-
+        InitializeComponent();
         for (var index = 0; index < 4; index++)
         {
             historyPanel.Controls.Add(CreateTransactionCard($"Hóa đơn #{index + 1}", index + 1));
@@ -57,6 +22,11 @@ public class CustomerView : UserControl, IThemeable
         customerList.BackColor = panelBackground;
         customerList.ForeColor = foreground;
         historyPanel.BackColor = background;
+    }
+
+    private void Layout_SizeChanged(object? sender, EventArgs e)
+    {
+        layout.SplitterDistance = (int)(layout.Width * 0.4);
     }
 
     private Control CreateTransactionCard(string title, int itemCount)
