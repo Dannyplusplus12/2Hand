@@ -263,11 +263,11 @@ public partial class TransactionView : UserControl, IThemeable
         }
 
         var rowIndex = cartGrid.Rows.Add();
-        var row = cartGrid.Rows[rowIndex];
-        row.Cells[0].Value = product.Name;
-        row.Cells[1].Value = 1;
-        row.Cells[2].Value = product.Price;
-        row.Cells[3].Value = product.Price;
+        var newRow = cartGrid.Rows[rowIndex];
+        newRow.Cells[0].Value = product.Name;
+        newRow.Cells[1].Value = 1;
+        newRow.Cells[2].Value = product.Price;
+        newRow.Cells[3].Value = product.Price;
     }
 
     private static Image CenterCropSquare(Image source, int width, int height)
