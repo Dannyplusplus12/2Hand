@@ -2,13 +2,12 @@ namespace _2Hand.Views;
 
 public partial class CustomerView : UserControl, IThemeable
 {
+    private List<Models.Customer> customers = new();
+
     public CustomerView()
     {
         InitializeComponent();
-        for (var index = 0; index < 4; index++)
-        {
-            historyPanel.Controls.Add(CreateTransactionCard($"Hóa đơn #{index + 1}", index + 1));
-        }
+        Load += async (_, _) => await LoadCustomersAsync();
     }
 
     public void ApplyTheme(bool darkMode)
@@ -24,13 +23,56 @@ public partial class CustomerView : UserControl, IThemeable
         historyPanel.BackColor = background;
     }
 
+    private async Task LoadCustomersAsync()
+    {
+        using var context = Data.DbContextFactory.Create();
+        var service = new Services.CustomerService(context);
+        customers = await service.GetAllAsync();
+        customerList.Items.Clear();
+        foreach (var customer in customers)
+        {
+            var item = new ListViewItem(customer.FullName)
+            {
+                Tag = customer
+            };
+            item.SubItems.Add(customer.Phone);
+            customerList.Items.Add(item);
+        }
+        historyPanel.Controls.Clear();
+    }
+
+    private async Task LoadCustomerHistoryAsync(Models.Customer customer)
+    {
+        using var context = Data.DbContextFactory.Create();
+        var service = new Services.TransactionService(context);
+        var transactions = await service.GetHistoryAsync(customer.Id);
+        historyPanel.Controls.Clear();
+        foreach (var transaction in transactions)
+        {
+            historyPanel.Controls.Add(CreateTransactionCard(transaction));
+        }
+    }
+
+    private void CustomerList_SelectedIndexChanged(object? sender, EventArgs e)
+    {
+        if (customerList.SelectedItems.Count == 0)
+        {
+            return;
+        }
+
+        if (customerList.SelectedItems[0].Tag is Models.Customer customer)
+        {
+            _ = LoadCustomerHistoryAsync(customer);
+        }
+    }
+
     private void Layout_SizeChanged(object? sender, EventArgs e)
     {
         layout.SplitterDistance = (int)(layout.Width * 0.4);
     }
 
 
-    private Control CreateTransactionCard(string title, int itemCount)
+    private Control CreateTransactionCard(Models.Transaction transaction)
     {
         var card = new Panel
         {
@@ -48,7 +90,7 @@ public partial class CustomerView : UserControl, IThemeable
 
         var titleLabel = new Label
         {
-            Text = title,
+            Text = $"Hóa đơn #{transaction.Id} - {transaction.TotalAmount:n0} đ",
             Dock = DockStyle.Fill,
             Font = new Font("Segoe UI", 20F, FontStyle.Bold)
         };

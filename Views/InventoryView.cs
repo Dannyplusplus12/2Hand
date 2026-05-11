@@ -2,9 +2,12 @@ namespace _2Hand.Views;
 
 public partial class InventoryView : UserControl, IThemeable
 {
+    private List<Models.Product> products = new();
+
     public InventoryView()
     {
         InitializeComponent();
+        Load += async (_, _) => await LoadProductsAsync();
     }
 
     public void ApplyTheme(bool darkMode)
@@ -47,12 +50,12 @@ public partial class InventoryView : UserControl, IThemeable
         var query = searchBox.Text.Trim();
         foreach (Control card in cardsPanel.Controls)
         {
-            if (card.Tag is not string name)
+            if (card.Tag is not Models.Product product)
             {
                 card.Visible = true;
                 continue;
             }
-            card.Visible = string.IsNullOrWhiteSpace(query) || name.Contains(query, StringComparison.OrdinalIgnoreCase);
+            card.Visible = string.IsNullOrWhiteSpace(query) || product.Name.Contains(query, StringComparison.OrdinalIgnoreCase);
         }
     }
 
@@ -89,28 +92,40 @@ public partial class InventoryView : UserControl, IThemeable
         using var context = Data.DbContextFactory.Create();
         var service = new Services.ProductService(context);
         await service.AddAsync(product);
-        cardsPanel.Controls.Add(CreateProductCard(product));
+        await LoadProductsAsync();
         nameInput.Clear();
         priceInput.Clear();
         quantityInput.Clear();
         imageInput.Clear();
     }
 
+    private async Task LoadProductsAsync()
+    {
+        using var context = Data.DbContextFactory.Create();
+        var service = new Services.ProductService(context);
+        products = await service.GetAllAsync();
+        cardsPanel.Controls.Clear();
+        foreach (var product in products)
+        {
+            cardsPanel.Controls.Add(CreateProductCard(product));
+        }
+    }
+
     private Control CreateProductCard(Models.Product product)
     {
         var card = new Panel
         {
-            Width = 300,
-            Height = 360,
-            Margin = new Padding(10),
-            Padding = new Padding(10)
+            Width = 240,
+            Height = 300,
+            Margin = new Padding(8),
+            Padding = new Padding(8)
         };
-        card.Tag = product.Name;
+        card.Tag = product;
 
         var image = new PictureBox
         {
-            Width = 260,
-            Height = 240,
+            Width = 220,
+            Height = 200,
             Dock = DockStyle.Top,
             SizeMode = PictureBoxSizeMode.Zoom
         };
@@ -126,22 +141,81 @@ public partial class InventoryView : UserControl, IThemeable
         {
             Text = product.Name,
             Dock = DockStyle.Top,
-            Height = 50,
-            Font = new Font("Segoe UI", 16F, FontStyle.Bold)
+            Height = 40,
+            Font = new Font("Segoe UI", 13F, FontStyle.Bold)
         };
 
         var priceLabel = new Label
         {
             Text = $"{product.Price:n0} đ",
             Dock = DockStyle.Top,
-            Height = 40,
-            Font = new Font("Segoe UI", 14F, FontStyle.Regular)
+            Height = 32,
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular)
         };
 
+        var quantityLabel = new Label
+        {
+            Text = $"Tồn: {product.Quantity}",
+            Dock = DockStyle.Top,
+            Height = 28,
+            Font = new Font("Segoe UI", 11F, FontStyle.Regular)
+        };
+
+        var actionPanel = new Panel
+        {
+            Dock = DockStyle.Bottom,
+            Height = 40
+        };
+
+        var editButton = new Button
+        {
+            Text = "Sửa",
+            Dock = DockStyle.Left,
+            Width = 80,
+            Font = new Font("Segoe UI", 11F, FontStyle.Bold)
+        };
+        editButton.Click += async (_, _) => await EditProductAsync(product);
+
+        var deleteButton = new Button
+        {
+            Text = "Xóa",
+            Dock = DockStyle.Right,
+            Width = 80,
+            Font = new Font("Segoe UI", 11F, FontStyle.Bold)
+        };
+        deleteButton.Click += async (_, _) => await DeleteProductAsync(product);
+
+        actionPanel.Controls.Add(deleteButton);
+        actionPanel.Controls.Add(editButton);
+
+        card.Controls.Add(actionPanel);
+        card.Controls.Add(quantityLabel);
         card.Controls.Add(priceLabel);
         card.Controls.Add(nameLabel);
         card.Controls.Add(image);
         return card;
+    }
+
+    private async Task EditProductAsync(Models.Product product)
+    {
+        using var dialog = new EditProductForm(product);
+        if (dialog.ShowDialog(this) != DialogResult.OK)
+        {
+            return;
+        }
+
+        using var context = Data.DbContextFactory.Create();
+        var service = new Services.ProductService(context);
+        await service.UpdateAsync(dialog.Product);
+        await LoadProductsAsync();
+    }
+
+    private async Task DeleteProductAsync(Models.Product product)
+    {
+        using var context = Data.DbContextFactory.Create();
+        var service = new Services.ProductService(context);
+        await service.DeleteAsync(product.Id);
+        await LoadProductsAsync();
     }
 
     private TextBox CreateFormInput(string placeholder)

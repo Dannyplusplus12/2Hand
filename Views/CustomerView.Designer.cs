@@ -58,6 +58,9 @@ partial class CustomerView
         customerList.TabIndex = 0;
         customerList.UseCompatibleStateImageBehavior = false;
         customerList.View = View.Details;
+        customerList.Columns.Add("Tên", 220);
+        customerList.Columns.Add("SĐT", 160);
+        customerList.SelectedIndexChanged += CustomerList_SelectedIndexChanged;
         // 
         // historyPanel
         // 

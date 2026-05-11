@@ -60,4 +60,15 @@ public class TransactionService
 
         return transactionEntity;
     }
+
+    public async Task<List<Transaction>> GetHistoryAsync(int customerId)
+    {
+        return await context.Transactions
+            .AsNoTracking()
+            .Include(t => t.Items)
+            .ThenInclude(i => i.Product)
+            .Where(t => t.CustomerId == customerId)
+            .OrderByDescending(t => t.CreatedAt)
+            .ToListAsync();
+    }
 }

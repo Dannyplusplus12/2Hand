@@ -25,10 +25,10 @@
 ## Implemented UI
 - MainForm shell with sidebar and simplified header
 - Dashboard, Inventory, Customer, Transaction view scaffolds
-- Inventory split layout with add form, sample data rendering, and search filter
-- Customer transaction cards with dropdown details
+- Inventory split layout with add form, CRUD list, and search filter
+- Customer list with transaction history cards
 
 ## Pending Tasks
-- Wire up UI views with data, CRUD, and navigation actions
+- Wire up remaining UI views with data and navigation actions
 - Implement transactions workflow with cart, validation, payment popup, and stock deduction in a transaction
 - Add dashboard metrics and recent transactions navigation
