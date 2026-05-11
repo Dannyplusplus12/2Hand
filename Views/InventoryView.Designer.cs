@@ -6,7 +6,6 @@ partial class InventoryView
     private SplitContainer layout;
     private FlowLayoutPanel cardsPanel;
     private TextBox searchBox;
-    private Button sampleButton;
     private Panel headerPanel;
     private Panel formPanel;
     private TextBox nameInput;
@@ -33,7 +32,6 @@ partial class InventoryView
         cardsPanel = new FlowLayoutPanel();
         headerPanel = new Panel();
         searchBox = new TextBox();
-        sampleButton = new Button();
         formPanel = new Panel();
         addButton = new Button();
         imageInput = new TextBox();
@@ -93,7 +91,6 @@ partial class InventoryView
         // headerPanel
         // 
         headerPanel.Controls.Add(searchBox);
-        headerPanel.Controls.Add(sampleButton);
         headerPanel.Dock = DockStyle.Top;
         headerPanel.Location = new Point(0, 0);
         headerPanel.Name = "headerPanel";
@@ -108,20 +105,9 @@ partial class InventoryView
         searchBox.Location = new Point(10, 10);
         searchBox.Name = "searchBox";
         searchBox.PlaceholderText = "Tìm kiếm sản phẩm";
-        searchBox.Size = new Size(605, 47);
+        searchBox.Size = new Size(785, 47);
         searchBox.TabIndex = 0;
         searchBox.TextChanged += SearchBox_TextChanged;
-        // 
-        // sampleButton
-        // 
-        sampleButton.Dock = DockStyle.Right;
-        sampleButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-        sampleButton.Location = new Point(615, 10);
-        sampleButton.Name = "sampleButton";
-        sampleButton.Size = new Size(180, 100);
-        sampleButton.TabIndex = 1;
-        sampleButton.Text = "Sample";
-        sampleButton.Click += SampleButton_Click;
         // 
         // formPanel
         // 

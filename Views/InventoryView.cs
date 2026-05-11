@@ -32,21 +32,6 @@ public partial class InventoryView : UserControl, IThemeable
         }
     }
 
-    private void ShowSample()
-    {
-        cardsPanel.Controls.Clear();
-        var products = Services.SampleDataGenerator.GenerateProducts(8);
-        foreach (var product in products)
-        {
-            cardsPanel.Controls.Add(CreateProductCard(product));
-        }
-    }
-
-    private void SampleButton_Click(object? sender, EventArgs e)
-    {
-        ShowSample();
-    }
-
     private void SearchBox_TextChanged(object? sender, EventArgs e)
     {
         FilterCards();
