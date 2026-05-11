@@ -29,10 +29,6 @@ public partial class CustomerView : UserControl, IThemeable
         layout.SplitterDistance = (int)(layout.Width * 0.4);
     }
 
-    private void InitializeComponent()
-    {
-
-    }
 
     private Control CreateTransactionCard(string title, int itemCount)
     {

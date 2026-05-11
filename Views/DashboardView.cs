@@ -30,8 +30,4 @@ public partial class DashboardView : UserControl, IThemeable
         }
     }
 
-    private void InitializeComponent()
-    {
-
-    }
 }
