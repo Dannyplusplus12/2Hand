@@ -24,8 +24,6 @@ public partial class InventoryView : UserControl, IThemeable
 
         searchBox.BackColor = panelBackground;
         searchBox.ForeColor = foreground;
-        sampleButton.BackColor = Color.FromArgb(149, 165, 166);
-        sampleButton.ForeColor = Color.White;
         addButton.BackColor = Color.FromArgb(52, 152, 219);
         addButton.ForeColor = Color.White;
         foreach (var input in new[] { nameInput, priceInput, quantityInput, imageInput })

@@ -116,9 +116,9 @@ public partial class CustomerView : UserControl, IThemeable
         detailGrid.Columns.Add("Item", "Sản phẩm");
         detailGrid.Columns.Add("Qty", "SL");
         detailGrid.Columns.Add("Price", "Giá");
-        for (var i = 0; i < itemCount; i++)
+        foreach (var item in transaction.Items)
         {
-            detailGrid.Rows.Add($"Item {i + 1}", 1, "50.000 đ");
+            detailGrid.Rows.Add(item.Product?.Name ?? string.Empty, item.Quantity, $"{item.UnitPrice:n0} đ");
         }
 
         expandButton.Click += (_, _) => detailGrid.Visible = !detailGrid.Visible;
