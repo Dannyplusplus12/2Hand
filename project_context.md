@@ -27,6 +27,7 @@
 - Dashboard, Inventory, Customer, Transaction view scaffolds
 - Inventory split layout with add form, sample data rendering, and search filter
 - Customer transaction cards with dropdown details
+- UI scale adjusted down to avoid overflow
 
 ## Pending Tasks
 - Wire up UI views with data, CRUD, and navigation actions

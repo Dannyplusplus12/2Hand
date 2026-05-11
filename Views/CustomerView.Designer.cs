@@ -35,7 +35,7 @@ partial class CustomerView
         customerList.Dock = DockStyle.Fill;
         customerList.View = View.Details;
         customerList.FullRowSelect = true;
-        customerList.Font = new Font("Segoe UI", 18F, FontStyle.Regular);
+        customerList.Font = new Font("Segoe UI", 14F, FontStyle.Regular);
         customerList.Columns.Add("Tên", 220);
         customerList.Columns.Add("SĐT", 160);
 

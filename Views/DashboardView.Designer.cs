@@ -45,61 +45,61 @@ partial class DashboardView
         Dock = DockStyle.Fill;
 
         cardsPanel.Dock = DockStyle.Top;
-        cardsPanel.Height = 320;
+        cardsPanel.Height = 260;
         cardsPanel.AutoScroll = false;
         cardsPanel.FlowDirection = FlowDirection.LeftToRight;
         cardsPanel.WrapContents = false;
         cardsPanel.Padding = new Padding(10);
 
-        revenueCard.Width = 560;
-        revenueCard.Height = 280;
+        revenueCard.Width = 460;
+        revenueCard.Height = 230;
         revenueCard.Margin = new Padding(10);
-        revenueCard.Padding = new Padding(20);
+        revenueCard.Padding = new Padding(16);
 
         revenueTitle.Text = "Doanh thu tháng này";
         revenueTitle.Dock = DockStyle.Top;
-        revenueTitle.Height = 70;
-        revenueTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+        revenueTitle.Height = 56;
+        revenueTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
 
         revenueLabel.Text = "0 đ";
         revenueLabel.Dock = DockStyle.Fill;
-        revenueLabel.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
+        revenueLabel.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
         revenueLabel.TextAlign = ContentAlignment.MiddleLeft;
 
         revenueCard.Controls.Add(revenueLabel);
         revenueCard.Controls.Add(revenueTitle);
 
-        stockCard.Width = 560;
-        stockCard.Height = 280;
+        stockCard.Width = 460;
+        stockCard.Height = 230;
         stockCard.Margin = new Padding(10);
-        stockCard.Padding = new Padding(20);
+        stockCard.Padding = new Padding(16);
 
         stockTitle.Text = "Tổng tồn kho";
         stockTitle.Dock = DockStyle.Top;
-        stockTitle.Height = 70;
-        stockTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+        stockTitle.Height = 56;
+        stockTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
 
         stockLabel.Text = "0";
         stockLabel.Dock = DockStyle.Fill;
-        stockLabel.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
+        stockLabel.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
         stockLabel.TextAlign = ContentAlignment.MiddleLeft;
 
         stockCard.Controls.Add(stockLabel);
         stockCard.Controls.Add(stockTitle);
 
-        lowStockCard.Width = 560;
-        lowStockCard.Height = 280;
+        lowStockCard.Width = 460;
+        lowStockCard.Height = 230;
         lowStockCard.Margin = new Padding(10);
-        lowStockCard.Padding = new Padding(20);
+        lowStockCard.Padding = new Padding(16);
 
         lowStockTitle.Text = "Cảnh báo hết hàng";
         lowStockTitle.Dock = DockStyle.Top;
-        lowStockTitle.Height = 70;
-        lowStockTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+        lowStockTitle.Height = 56;
+        lowStockTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
 
         lowStockLabel.Text = "0";
         lowStockLabel.Dock = DockStyle.Fill;
-        lowStockLabel.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
+        lowStockLabel.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
         lowStockLabel.TextAlign = ContentAlignment.MiddleLeft;
 
         lowStockCard.Controls.Add(lowStockLabel);
@@ -115,7 +115,7 @@ partial class DashboardView
         recentTransactions.Dock = DockStyle.Fill;
         recentTransactions.View = View.Details;
         recentTransactions.FullRowSelect = true;
-        recentTransactions.Font = new Font("Segoe UI", 20F, FontStyle.Regular);
+        recentTransactions.Font = new Font("Segoe UI", 16F, FontStyle.Regular);
         recentTransactions.Columns.Add("Khách hàng", 260);
         recentTransactions.Columns.Add("SĐT", 200);
         recentTransactions.Columns.Add("Tổng tiền", 200);

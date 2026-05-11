@@ -38,80 +38,80 @@ partial class MainForm
 
         StartPosition = FormStartPosition.CenterScreen;
         Text = "2Hand Management";
-        Width = 1800;
-        Height = 1000;
-        MinimumSize = new Size(1600, 900);
+        Width = 1500;
+        Height = 850;
+        MinimumSize = new Size(1300, 780);
 
         sidebar.Dock = DockStyle.Left;
-        sidebar.Width = 280;
+        sidebar.Width = 220;
         sidebar.Padding = new Padding(10);
 
         header.Dock = DockStyle.Top;
-        header.Height = 120;
+        header.Height = 96;
         header.Padding = new Padding(20);
 
         content.Dock = DockStyle.Fill;
-        content.Padding = new Padding(20);
+        content.Padding = new Padding(16);
 
         titleLabel.Text = "Tổng quan";
         titleLabel.Dock = DockStyle.Fill;
         titleLabel.AutoSize = false;
         titleLabel.TextAlign = ContentAlignment.MiddleLeft;
-        titleLabel.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
+        titleLabel.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
 
         dashboardButton.Text = "Tổng quan";
         dashboardButton.Dock = DockStyle.Top;
-        dashboardButton.Height = 90;
+        dashboardButton.Height = 72;
         dashboardButton.IconChar = IconChar.ChartPie;
         dashboardButton.IconColor = Color.White;
-        dashboardButton.IconSize = 28;
+        dashboardButton.IconSize = 22;
         dashboardButton.TextImageRelation = TextImageRelation.ImageBeforeText;
         dashboardButton.TextAlign = ContentAlignment.MiddleLeft;
         dashboardButton.ImageAlign = ContentAlignment.MiddleLeft;
-        dashboardButton.Padding = new Padding(20, 0, 0, 0);
-        dashboardButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+        dashboardButton.Padding = new Padding(16, 0, 0, 0);
+        dashboardButton.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
         dashboardButton.FlatStyle = FlatStyle.Flat;
         dashboardButton.Click += DashboardButton_Click;
 
         inventoryButton.Text = "Kho";
         inventoryButton.Dock = DockStyle.Top;
-        inventoryButton.Height = 90;
+        inventoryButton.Height = 72;
         inventoryButton.IconChar = IconChar.BoxesStacked;
         inventoryButton.IconColor = Color.White;
-        inventoryButton.IconSize = 28;
+        inventoryButton.IconSize = 22;
         inventoryButton.TextImageRelation = TextImageRelation.ImageBeforeText;
         inventoryButton.TextAlign = ContentAlignment.MiddleLeft;
         inventoryButton.ImageAlign = ContentAlignment.MiddleLeft;
-        inventoryButton.Padding = new Padding(20, 0, 0, 0);
-        inventoryButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+        inventoryButton.Padding = new Padding(16, 0, 0, 0);
+        inventoryButton.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
         inventoryButton.FlatStyle = FlatStyle.Flat;
         inventoryButton.Click += InventoryButton_Click;
 
         customerButton.Text = "Khách";
         customerButton.Dock = DockStyle.Top;
-        customerButton.Height = 90;
+        customerButton.Height = 72;
         customerButton.IconChar = IconChar.UserGroup;
         customerButton.IconColor = Color.White;
-        customerButton.IconSize = 28;
+        customerButton.IconSize = 22;
         customerButton.TextImageRelation = TextImageRelation.ImageBeforeText;
         customerButton.TextAlign = ContentAlignment.MiddleLeft;
         customerButton.ImageAlign = ContentAlignment.MiddleLeft;
-        customerButton.Padding = new Padding(20, 0, 0, 0);
-        customerButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+        customerButton.Padding = new Padding(16, 0, 0, 0);
+        customerButton.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
         customerButton.FlatStyle = FlatStyle.Flat;
         customerButton.Click += CustomerButton_Click;
 
         transactionButton.Text = "Giao dịch";
         transactionButton.Dock = DockStyle.Top;
-        transactionButton.Height = 90;
+        transactionButton.Height = 72;
         transactionButton.IconChar = IconChar.Receipt;
         transactionButton.IconColor = Color.White;
-        transactionButton.IconSize = 28;
+        transactionButton.IconSize = 22;
         transactionButton.TextImageRelation = TextImageRelation.ImageBeforeText;
         transactionButton.TextAlign = ContentAlignment.MiddleLeft;
         transactionButton.ImageAlign = ContentAlignment.MiddleLeft;
-        transactionButton.Padding = new Padding(20, 0, 0, 0);
-        transactionButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+        transactionButton.Padding = new Padding(16, 0, 0, 0);
+        transactionButton.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
         transactionButton.FlatStyle = FlatStyle.Flat;
         transactionButton.Click += TransactionButton_Click;
 
